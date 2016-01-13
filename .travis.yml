@@ -37,7 +37,7 @@ before_script:
 
 script:
   - '[ "$KARMA" = "true" ] && bundle exec rake karma:run || echo "Skipping karma run"'
-  - "KNAPSACK_GENERATE_REPORT=true bundle exec rspec $TEST_CASES"
+  - "KNAPSACK_GENERATE_REPORT=true bundle exec rspec ./spec/performance/orders_controller_spec.rb"
 
 after_success:
   - >
