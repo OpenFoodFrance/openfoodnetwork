@@ -20,7 +20,7 @@ class OrderCycle < ActiveRecord::Base
   scope :upcoming, lambda { where('order_cycles.orders_open_at > ?', Time.zone.now) }
   scope :not_closed, lambda { where('order_cycles.orders_close_at > ? OR order_cycles.orders_close_at IS NULL', Time.zone.now) }
   scope :closed, lambda { where('order_cycles.orders_close_at < ?', Time.zone.now).order("order_cycles.orders_close_at DESC") }
-  scope :undated, where(orders_open_at: nil, orders_close_at: nil)
+  scope :undated, where('order_cycles.orders_open_at IS NULL OR orders_close_at IS NULL')
   scope :dated, where('orders_open_at IS NOT NULL AND orders_close_at IS NOT NULL')
 
   scope :soonest_closing,      lambda { active.order('order_cycles.orders_close_at ASC') }
@@ -191,7 +191,7 @@ class OrderCycle < ActiveRecord::Base
   end
 
   def undated?
-    self.orders_open_at.nil? && self.orders_close_at.nil?
+    self.orders_open_at.nil? || self.orders_close_at.nil?
   end
 
   def upcoming?

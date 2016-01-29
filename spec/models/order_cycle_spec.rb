@@ -47,13 +47,15 @@ describe OrderCycle do
     oc_not_yet_open = create(:simple_order_cycle, orders_open_at: 1.week.from_now, orders_close_at: 2.weeks.from_now)
     oc_already_closed = create(:simple_order_cycle, orders_open_at: 2.weeks.ago, orders_close_at: 1.week.ago)
     oc_undated = create(:simple_order_cycle, orders_open_at: nil, orders_close_at: nil)
+    oc_undated_open = create(:simple_order_cycle, orders_open_at: 1.week.ago, orders_close_at: nil)
+    oc_undated_close = create(:simple_order_cycle, orders_open_at: nil, orders_close_at: 1.week.from_now)
 
     OrderCycle.active.should == [oc_active]
     OrderCycle.inactive.should match_array [oc_not_yet_open, oc_already_closed]
     OrderCycle.upcoming.should == [oc_not_yet_open]
     OrderCycle.closed.should == [oc_already_closed]
-    OrderCycle.undated.should == [oc_undated]
-    OrderCycle.not_closed.should == [oc_active, oc_not_yet_open, oc_undated]
+    OrderCycle.undated.should == [oc_undated, oc_undated_open, oc_undated_close]
+    OrderCycle.not_closed.should == [oc_active, oc_not_yet_open, oc_undated, oc_undated_open, oc_undated_close]
     OrderCycle.dated.should == [oc_active, oc_not_yet_open, oc_already_closed]
   end
 
@@ -367,6 +369,26 @@ describe OrderCycle do
 
     it "reports status when an order cycle is undated" do
       oc.update_attributes!(orders_open_at: nil, orders_close_at: nil)
+
+      oc.should     be_undated
+      oc.should_not be_dated
+      oc.should_not be_upcoming
+      oc.should_not be_open
+      oc.should_not be_closed
+    end
+
+    it "reports status when an order cycle is partially dated - opening time only" do
+      oc.update_attributes!(orders_close_at: nil)
+
+      oc.should     be_undated
+      oc.should_not be_dated
+      oc.should_not be_upcoming
+      oc.should_not be_open
+      oc.should_not be_closed
+    end
+
+    it "reports status when an order cycle is partially dated - closing time only" do
+      oc.update_attributes!(orders_open_at: nil)
 
       oc.should     be_undated
       oc.should_not be_dated
