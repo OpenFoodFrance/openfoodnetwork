@@ -13,10 +13,12 @@ fr:
   home: "OFN"
   title: Open Food France
   welcome_to: 'Bienvenue sur '
-  search_by_name: Recherche pas nom ou région...
+  search_by_name: Recherche par nom ou département...
   producers: Producteurs & hubs
   producers_join: Les producteurs et autres hubs basés en France sont invités à rejoindre Open Food France.
   charges_sales_tax: Soumis à la TVA?
+  say_no: "Non"
+  say_yes: "Oui"
   print: "Imprimer"
   logo: "Logo (640x130)"
   logo_mobile: "Logo smartphone (75x26)"
@@ -299,6 +301,7 @@ fr:
   groups_signup_contact: Vous voulez discuter?
   groups_signup_contact_text: "Prenez contact et découvrez ce qu'Open Food France peut faire pour vous:"
   groups_signup_detail: "Plus de précisions."
+  groups_signup_subject: "Je%20vous%20contacte%20à%20propos%20des%20groupes%20dans%20OpenFoodFrance"
   login_invalid: "Email ou mot de passe erroné"
   modal_hubs: "Food Hubs"
   modal_hubs_abstract: Nos food hubs sont les points de contact entre vous et les personnes qui produisent votre nourriture!
