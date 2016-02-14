@@ -13,7 +13,7 @@ fr:
   home: "OFN"
   title: Open Food France
   welcome_to: 'Bienvenue sur '
-  search_by_name: Recherche par nom ou département...
+  search_by_name: Recherche par nom ou par département...
   producers: Producteurs & hubs
   producers_join: Les producteurs et autres hubs basés en France sont invités à rejoindre Open Food France.
   charges_sales_tax: Soumis à la TVA?
@@ -238,7 +238,7 @@ fr:
   shopping_contact_social: "Suivre"
   shopping_groups_part_of: "fait partie de:"
   shopping_producers_of_hub: "Les producteurs de %{hub}:"
-  enterprises_next_closing: "Prochaine commande à passer avant"
+  enterprises_next_closing: "Clôture des commandes pour ce cycle"
   enterprises_ready_for: "Prêt pour"
   enterprises_choose: "Choisissez votre date de commande:"
   hubs_buy: "Acheter:"
